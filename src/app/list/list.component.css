@@ -1,0 +1,31 @@
+.listItem {
+    background-color: goldenrod;
+    border-bottom: 1px solid black;
+    margin-right: 10%;
+    margin-top: 5px;
+}
+
+.circle {
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 15px;
+    margin-top: 10px;
+    font-weight: 100;
+}
+
+.absolut {
+    position: absolute;
+    right: 5px;
+}
+
+.green {
+    background-color: green;
+}
+
+.linethrough {
+    text-decoration-line: line-through;
+    color: gray;
+}

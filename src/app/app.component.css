@@ -1,0 +1,20 @@
+.listPage {
+    margin-top: 20px;
+    background-color: goldenrod;
+    border-left: 2px dashed black;
+    padding-left: 55px;
+    padding-right: 15px;
+    min-height: 700px;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-family: cursive, Georgia, 'Times New Roman', Times, serif;
+}
+
+.shareButtons {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}

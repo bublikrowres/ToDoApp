@@ -1,0 +1,22 @@
+<h1 class="text-center mt-5 mb-3">To Do List</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-8 p-0 m-0">
+            <app-header (sendAddEvent)="addItemToList($event)" (sendEdit)="deleteButton($event)"></app-header>
+        </div>
+        <div class="col-10 col-md-8 listPage">
+            <app-list *ngFor="let item of list" [done]="item.done" [name]="item.name" [deleteStatus]="deleteStatus" (deleteEvent)=deleteFromList(item.name)>
+            </app-list>
+            <div class="shareButtons">
+                <button class="btn btn-lg" *ngIf="!emailStatus" (click)="emailStatus=true"><i class="fas fa-share-alt"> Share</i></button>
+                <div *ngIf="emailStatus">
+
+                    <input required type="text" #senderEmail placeholder="enter your email address">
+                    <button type="submit" class="btn btn-lg" (click)="sendEmail(senderEmail)"><i class="fas fa-envelope-square"> Send</i> </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
