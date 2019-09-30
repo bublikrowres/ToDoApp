@@ -13,7 +13,10 @@ export class AppComponent {
    ){
 
   }
-  emailStatus: boolean = false;
+  errorMessage: string;
+  successMessage: string;
+  displayMessage = false;
+  shareStatus: boolean = false;
   deleteStatus: boolean = false;
   list: List[] = [
     new List(false, 'Add and Edit yout list'),
@@ -32,7 +35,7 @@ export class AppComponent {
     }
   }
   sendEmail(elem){
-    this.emailStatus = false;
+    this.shareStatus = false;
     let textMessage: string ='';
     for(let i=0;i<this.list.length;i++){
       textMessage+= `\n - ${this.list[i].name}`
@@ -45,9 +48,48 @@ export class AppComponent {
     }
 
     this.configService.sendEmail(emailDetails).subscribe((data)=>{
-      // console.log(data);
+      this.displayMessage = true;
+      this.successMessage = 'Email sent successfully';
+      setTimeout(() => {
+        this.displayMessage = false;
+        this.successMessage = '';
+      }, 5000);
+
     },(err)=>{
-      // console.log(err);
+      this.displayMessage = true;
+      this.errorMessage = 'Error sending email';
+      setTimeout(() => {
+        this.errorMessage = '';
+        this.displayMessage = false;
+      }, 5000);
+    });
+  }
+  
+  sendText(elem){
+    this.shareStatus = false;
+    let textMessage: string = '';
+    for(let i=0;i<this.list.length;i++){
+      textMessage+= `\n - ${this.list[i].name}`
+    }
+
+    const sendText = {
+      message : `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage}`,
+      senderNumber : elem.value
+    }
+    this.configService.sendText(sendText).subscribe((data)=>{
+      this.displayMessage = true;
+      this.successMessage = 'Text sent successfully';
+      setTimeout(() => {
+        this.displayMessage = false;
+        this.successMessage = '';
+      }, 5000);
+    },(err)=>{
+      this.displayMessage = true;
+      this.errorMessage = 'Error sending text';
+      setTimeout(() => {
+        this.displayMessage = false;
+        this.errorMessage = '';
+      }, 5000);
     });
   }
 

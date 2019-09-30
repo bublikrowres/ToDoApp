@@ -24,10 +24,6 @@
     top: 15px;
 }
 
-.btn-primary {
-    margin-left: 10px;
-}
-
 .btn:hover {
     transform: scale(1.1)
 }

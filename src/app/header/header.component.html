@@ -3,7 +3,7 @@
         <button *ngIf="plusActive" class="btn btn-success btn-lg py-0" (click)="showAdd()">+</button>
         <div class="addForm" *ngIf="addActive">
             <input required type="text" #valueToDoName value=''>
-            <button type="submit" class="btn btn-primary" (click)="addItemToList(valueToDoName.value)">Add</button>
+            <button type="submit" class="btn btn-primary ml-3" (click)="addItemToList(valueToDoName.value)">Add</button>
         </div>
     </div>
     <div *ngIf="!addActive" class="btn btn-secondary" (click)="showEdit()">Edit</div>

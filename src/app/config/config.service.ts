@@ -12,9 +12,13 @@ export class ConfigService {
     private http: HttpClient
   ) { }
 
-  url = 'https://damp-reef-76842.herokuapp.com/email';
+  urlEmail = 'https://damp-reef-76842.herokuapp.com/email';
+  urlText = 'https://damp-reef-76842.herokuapp.com/sms';
   
   sendEmail(email: Email) {
-    return this.http.post<Email>(this.url,email);
+    return this.http.post<Email>(this.urlEmail,email);
+  }
+  sendText(data){
+    return this.http.post(this.urlText,data);
   }
 }

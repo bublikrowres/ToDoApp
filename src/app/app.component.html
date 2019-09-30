@@ -8,13 +8,26 @@
         <div class="col-10 col-md-8 listPage">
             <app-list *ngFor="let item of list" [done]="item.done" [name]="item.name" [deleteStatus]="deleteStatus" (deleteEvent)=deleteFromList(item.name)>
             </app-list>
+            <div *ngIf="displayMessage">
+                <p class="errorMessage">{{errorMessage}}</p>
+                <p class="successMessage">{{successMessage}}</p>
+            </div>
+
             <div class="shareButtons">
-                <button class="btn btn-lg" *ngIf="!emailStatus" (click)="emailStatus=true"><i class="fas fa-share-alt"> Share</i></button>
-                <div *ngIf="emailStatus">
-
-                    <input required type="text" #senderEmail placeholder="enter your email address">
-                    <button type="submit" class="btn btn-lg" (click)="sendEmail(senderEmail)"><i class="fas fa-envelope-square"> Send</i> </button>
-
+                <button class="btn btn-lg" *ngIf="!shareStatus" (click)="shareStatus=true"><i class="fas fa-share-alt"> Share</i></button>
+                <div *ngIf="shareStatus">
+                    <div class="d-flex justify-content-center">
+                        <button (click)="emailActive=true;textActive=false" class="btn btn-secondary">Email</button>
+                        <button (click)="textActive=true;emailActive=false" class="btn btn-success ml-5">Text</button>
+                    </div>
+                    <div *ngIf="emailActive" class="mt-3">
+                        <input required type="text" #senderEmail placeholder="enter your email address">
+                        <button class="btn btn-secondary ml-3" (click)="sendEmail(senderEmail)"><i class="fas fa-envelope-square"> </i> Send email</button>
+                    </div>
+                    <div *ngIf="textActive" class="mt-3">
+                        <input required type="text" #senderText placeholder="enter phone number">
+                        <button class="btn btn-success ml-3" (click)="sendText(senderText)"><i class="fas fa-phone-square"> </i> Send SMS</button>
+                    </div>
                 </div>
             </div>
         </div>
