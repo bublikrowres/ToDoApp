@@ -56,7 +56,7 @@ export class AppComponent {
         this.displayMessage = false;
         this.successMessage = '';
       }, 5000);
-
+      console.log(data)
     },(err)=>{
       this.displayMessage = true;
       this.errorMessage = 'Error sending email';
@@ -64,6 +64,7 @@ export class AppComponent {
         this.errorMessage = '';
         this.displayMessage = false;
       }, 5000);
+      console.log(err)
     });
   }
   
@@ -78,6 +79,7 @@ export class AppComponent {
       message : `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage}`,
       sendNumber : elem.value
     }
+    console.log(sms);
     this.configService.sendText(sms).subscribe((data)=>{
       this.displayMessage = true;
       this.successMessage = 'Text sent successfully';
@@ -85,6 +87,7 @@ export class AppComponent {
         this.displayMessage = false;
         this.successMessage = '';
       }, 5000);
+      console.log(data)
     },(err)=>{
       this.displayMessage = true;
       this.errorMessage = 'Error sending text';
@@ -92,6 +95,7 @@ export class AppComponent {
         this.displayMessage = false;
         this.errorMessage = '';
       }, 5000);
+      console.log(err)
     });
   }
 
