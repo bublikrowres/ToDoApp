@@ -13,6 +13,8 @@ export class AppComponent {
    ){
 
   }
+  emailActive:boolean = false;
+  textActive:boolean = false;
   errorMessage: string;
   successMessage: string;
   displayMessage = false;
