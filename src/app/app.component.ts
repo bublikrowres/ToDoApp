@@ -74,11 +74,11 @@ export class AppComponent {
       textMessage+= `\n - ${this.list[i].name}`
     }
 
-    const sendText = {
+    const sms = {
       message : `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage}`,
-      senderNumber : elem.value
+      sendNumber : elem.value
     }
-    this.configService.sendText(sendText).subscribe((data)=>{
+    this.configService.sendText(sms).subscribe((data)=>{
       this.displayMessage = true;
       this.successMessage = 'Text sent successfully';
       setTimeout(() => {
