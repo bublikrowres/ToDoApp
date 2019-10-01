@@ -13,4 +13,4 @@ Created with:
 Features:
 - Create To Do list
 - Share list via Email or Text 
-    (text numbers need to be validate prior to share, only )
+    (text numbers need to be validate prior to sharing)
