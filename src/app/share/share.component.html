@@ -1,0 +1,20 @@
+<div class="shareButtons">
+    <button class="btn btn-lg" *ngIf="!shareStatus" (click)="shareStatus=true"><i class="fas fa-share-alt"> Share</i></button>
+    <div *ngIf="shareStatus">
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-lg" (click)="shareStatus=false;textActive=false;emailActive=false">Cancel <i class="far fa-window-close"></i></button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button (click)="emailActive=true;textActive=false" class="btn btn-secondary">Email</button>
+            <button (click)="textActive=true;emailActive=false" class="btn btn-success ml-5">Text</button>
+        </div>
+        <div *ngIf="emailActive" class="my-3">
+            <input required type="text" #senderEmail placeholder="enter your email address">
+            <button class="btn btn-secondary ml-3" (click)="sendEmail(senderEmail)"><i class="fas fa-envelope-square"> </i> Send</button>
+        </div>
+        <div *ngIf="textActive" class="my-3">
+            <input required type="text" #senderText placeholder="enter phone number">
+            <button class="btn btn-success ml-3" (click)="sendText(senderText)"><i class="fas fa-phone-square"> </i> Send</button>
+        </div>
+    </div>
+</div>

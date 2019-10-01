@@ -8,25 +8,38 @@ import { ConfigService } from "./config/config.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  deleteStatus: boolean = false;
+  errorMessage: string;
+  successMessage: string;
+  displayMessage = false;
+
   constructor(
     private configService : ConfigService
    ){
 
   }
-  emailActive:boolean = false;
-  textActive:boolean = false;
-  errorMessage: string;
-  successMessage: string;
-  displayMessage = false;
-  shareStatus: boolean = false;
-  deleteStatus: boolean = false;
   list: List[] = [
     new List(false, 'Add and Edit yout list'),
   ];
+
+  displaySuccess(elem){
+    this.displayMessage = true;
+    this.successMessage = elem + ' sent successfully';
+  }
+  displayError(elem){
+    this.displayMessage = true;
+    this.errorMessage = 'Error sending ' + elem;
+  }
+  resetShare(){
+    this.errorMessage = '';
+    this.successMessage = '';
+    this.displayMessage = false;
+  }
+  
   addItemToList(event){
     this.list.push(new List(false, event));
   }
-  deleteButton(event){
+  deleteButton(){
     this.deleteStatus ? this.deleteStatus=false : this.deleteStatus = true;
   }
   deleteFromList(elem){
@@ -36,67 +49,58 @@ export class AppComponent {
       }
     }
   }
-  sendEmail(elem){
-    this.shareStatus = false;
+
+  email(event){
+    // console.log(event);
     let textMessage: string ='';
     for(let i=0;i<this.list.length;i++){
       textMessage+= `\n - ${this.list[i].name}`
     }
     const emailDetails = {
       sender: "automaticbublikrowres@yahoo.com",
-      destination: elem.value,
+      destination: event,
       subject: "ToDoApp",
       text: `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage} \n\n Please do not reply to this message, no one will read it and you would just waste your time. \n\n Have a great day Website: https://bublikrowres.github.io/ToDoApp/ `
     }
-
     this.configService.sendEmail(emailDetails).subscribe((data)=>{
-      this.displayMessage = true;
-      this.successMessage = 'Email sent successfully';
+      this.displaySuccess('Email');
       setTimeout(() => {
-        this.displayMessage = false;
-        this.successMessage = '';
+        this.resetShare()
       }, 5000);
-      console.log(data)
+      // console.log(data)
     },(err)=>{
-      this.displayMessage = true;
-      this.errorMessage = 'Error sending email';
+      this.displayError('email');
       setTimeout(() => {
-        this.errorMessage = '';
-        this.displayMessage = false;
+        this.resetShare()
       }, 5000);
-      console.log(err)
+      // console.log(err)
     });
   }
-  
-  sendText(elem){
-    this.shareStatus = false;
+
+  sms(event){
+    // console.log(event);
     let textMessage: string = '';
     for(let i=0;i<this.list.length;i++){
       textMessage+= `\n - ${this.list[i].name}`
     }
-
     const sms = {
       message : `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage}`,
-      sendNumber : elem.value
+      sendNumber : event
     }
-    console.log(sms);
+    // console.log(sms);
     this.configService.sendText(sms).subscribe((data)=>{
-      this.displayMessage = true;
-      this.successMessage = 'Text sent successfully';
+      this.displaySuccess('Text');
       setTimeout(() => {
-        this.displayMessage = false;
-        this.successMessage = '';
+        this.resetShare()
       }, 5000);
-      console.log(data)
+      // console.log(data)
     },(err)=>{
-      this.displayMessage = true;
-      this.errorMessage = 'Error sending text';
+      this.displayError('text');
       setTimeout(() => {
-        this.displayMessage = false;
-        this.errorMessage = '';
+        this.resetShare()
       }, 5000);
-      console.log(err)
+      // console.log(err)
     });
-  }
 
+  }
 }

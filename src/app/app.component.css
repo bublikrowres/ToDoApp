@@ -12,13 +12,6 @@ h1 {
     font-family: cursive, Georgia, 'Times New Roman', Times, serif;
 }
 
-.shareButtons {
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    padding-top: 15px;
-}
-
 .errorMessage {
     text-align: center;
     color: red;
