@@ -9,7 +9,7 @@
             <app-share (emailEvent)="email($event)" (smsEvent)="sms($event)"></app-share>
         </div>
         <div class="col-10 col-md-8">
-            <app-header (sendAddEvent)="addItemToList($event)" (sendEdit)="deleteButton($event)"></app-header>
+            <app-header (sendAddEvent)="addItemToList($event)" (sendEdit)="deleteButton()"></app-header>
         </div>
         <div class="col-10 col-md-8 listPage">
             <app-list *ngFor="let item of list" [done]="item.done" [name]="item.name" [deleteStatus]="deleteStatus" (deleteEvent)=deleteFromList(item.name)>
