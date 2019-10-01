@@ -60,7 +60,7 @@ export class AppComponent {
       sender: "automaticbublikrowres@yahoo.com",
       destination: event,
       subject: "ToDoApp",
-      text: `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage} \n\n Please do not reply to this message, no one will read it and you would just waste your time. \n\n Have a great day Website: https://bublikrowres.github.io/ToDoApp/ `
+      text: `Thank you for using the ToDoApp\n\n Your list includes: ${textMessage} \n\n Please do not reply to this message, no one will read it and you would just waste your time. \n\n Have a great day \n\n Website: https://bublikrowres.github.io/ToDoApp/ `
     }
     this.configService.sendEmail(emailDetails).subscribe((data)=>{
       this.displaySuccess('Email');
