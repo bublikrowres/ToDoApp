@@ -6,12 +6,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  addActive:boolean = false;
   plusAndEdit:boolean = true;
   toDoValue : string;
   @Output() sendAddEvent = new EventEmitter();
   editActive : boolean = false;
   @Output() sendEdit = new EventEmitter();
-  addItem = {};
   constructor() { }
 
 
