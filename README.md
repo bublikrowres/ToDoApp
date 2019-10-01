@@ -6,7 +6,7 @@ Deployed at https://bublikrowres.github.io/ToDoApp/
 
 Created with: 
 - Angular8
-- Node.js backend that uses: (made private for security)
+- Node.js backend (made private for security) that uses: 
     - nodemailer
     - twilio
     
